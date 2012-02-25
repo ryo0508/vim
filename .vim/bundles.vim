@@ -1,0 +1,7 @@
+Bundle 'ZenCoding.vim'
+Bundle 'surround.vim'
+Bundle 'snipMate'
+Bundle 'L9'
+Bundle 'Command-T'
+Bundle 'taglist.vim'
+Bundle 'https://github.com/majutsushi/tagbar.git'
