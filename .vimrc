@@ -38,34 +38,32 @@ syntax on
 
 
 :set number
+" :set relativenumber
 :set hidden
 :set autowrite
 "**********KEY BINDING******************************************
-" Fast saving
-nmap <leader>w :w!<cr>
-
 " Fast editing of the .vimrc
 nmap <leader>e :e! ~/.vimrc<cr>
 
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
 
-" For faster file switching
-nmap <Space>b :ls<CR>:buffer 
-nmap <Space>f :edit .<CR>
-nmap <Space>v :vsplit<CR><C-w><C-w>:ls<CR>:buffer
-
 " Spliting the Screen
 nmap <Space>- :split<cr><cr>
 nmap <Space>\| :vsplit<cr><cr>
+
+" Delete Key Problem
+set backspace=2 " make backspace work like most other apps
+
 "**********KEY BINDING END**************************************
 set foldmethod=marker
 
 "**********INDENT SETTING***************************************
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set smarttab
 "**********INDENT SETTING END***********************************
 
 
