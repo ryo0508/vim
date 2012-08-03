@@ -1,16 +1,30 @@
 " Vundle Setting------------------------------------------------------- {{{
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-
-" 1.bundles.vimでプラグインのリストを管理
-" 2.EditBundlesでこのリストの編集を開始
-" 3.リストを保存することでg:bundlesを更新してBundleCleanする
-let $bundles_file=$HOME.'/.vim/bundles.vim'
+Bundle 'gmarik/vundle'
+Bundle 'ZenCoding.vim'
+Bundle 'surround.vim'
+Bundle 'snipMate'
+Bundle 'L9'
+Bundle 'Command-T'
+Bundle 'taglist.vim'
+Bundle 'https://github.com/majutsushi/tagbar.git'
+Bundle 'Tabular'
+Bundle 'YankRing.vim'
+Bundle 'EasyMotion'
+Bundle 'The-NERD-tree'
+Bundle 'Zenburn'
+Bundle 'vim-coffee-script'
+Bundle 'tpope/rails.vim'
+Bundle 'tomasr/molokai'
+Bundle 'pangloss/vim-javascript'
+Bundle 'dbext.vim'
+Bundle 'tComment'
 com! EditBundles :e $bundles_file
 augroup Vundle
   au BufWritePost $bundles_file call vundle#config#init()
@@ -18,7 +32,6 @@ augroup Vundle
   au BufWritePost $bundles_file BundleClean
   au BufWritePost $bundles_file BundleInstall
 augroup END
-source $bundles_file
 
 filetype plugin indent on
 " }}}
@@ -176,7 +189,6 @@ let g:user_zen_settings = {
   \'indentation' : '  ',
   \}
 " }}}
-
 
 autocmd FileType javascript :compiler gjslint
 autocmd QuickfixCmdPost make copen
