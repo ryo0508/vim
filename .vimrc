@@ -13,10 +13,10 @@ call vundle#rc()
 let $bundles_file=$HOME.'/.vim/bundles.vim'
 com! EditBundles :e $bundles_file
 augroup Vundle
-	au BufWritePost $bundles_file call vundle#config#init()
-	au BufWritePost $bundles_file source $bundles_file
-	au BufWritePost $bundles_file BundleClean
-	au BufWritePost $bundles_file BundleInstall
+  au BufWritePost $bundles_file call vundle#config#init()
+  au BufWritePost $bundles_file source $bundles_file
+  au BufWritePost $bundles_file BundleClean
+  au BufWritePost $bundles_file BundleInstall
 augroup END
 source $bundles_file
 
@@ -30,6 +30,7 @@ set autoread
 :set hidden
 :set autowrite
 :set hlsearch
+:set ic
 " }}}
 
 " Status line ------------------------------------------------------------- {{{
@@ -78,8 +79,7 @@ set list
 set listchars=tab:>-
 " }}}
 
-" Color Setting-------------------------------------------------------- {{{
-:colorscheme zenburn 
+" {{{ Color Settings
 syntax on
 set t_Co=256
 " }}}
@@ -111,7 +111,7 @@ set backspace=2 " make backspace work like most other apps
 
 " }}}
 
-" INDENT SETTING------------------------------------------------------- {{{
+" Indent Setting------------------------------------------------------- {{{
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -176,3 +176,7 @@ let g:user_zen_settings = {
   \'indentation' : '  ',
   \}
 " }}}
+
+
+autocmd FileType javascript :compiler gjslint
+autocmd QuickfixCmdPost make copen
