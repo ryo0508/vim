@@ -190,5 +190,8 @@ let g:user_zen_settings = {
   \}
 " }}}
 
+" Snipmate-------------------------------------------------------------- {{{
+let g:snippets_dir = '~/.vim/snippets/'
+" }}}
 autocmd FileType javascript :compiler gjslint
 autocmd QuickfixCmdPost make copen
