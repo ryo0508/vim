@@ -1,1 +1,3 @@
 .vim/**/**
+!.vim/bundle/.gitignore
+!.vim/compiler/.gitignore
