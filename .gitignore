@@ -1,3 +1,4 @@
-.vim/**/**
 !.vim/bundle/.gitignore
 !.vim/compiler/.gitignore
+.vim/bundle/*
+.vim/compiler/*
