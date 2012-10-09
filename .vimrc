@@ -24,6 +24,7 @@ Bundle 'tomasr/molokai'
 Bundle 'pangloss/vim-javascript'
 Bundle 'dbext.vim'
 Bundle 'tComment'
+Bundle 'tpope/vim-rails.git'
 com! EditBundles :e $bundles_file
 augroup Vundle
   au BufWritePost $bundles_file call vundle#config#init()
@@ -108,8 +109,7 @@ let g:mapleader = ","
 
 " Fast editing of the .vimrc
 nmap <leader>e :e! ~/.vimrc<cr>
-autocmd! bufwritepost vimrc source 
-autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Spliting the Screen
 nmap <Space>- :split<cr><cr>
@@ -187,6 +187,13 @@ set wildignore+=*.DS_Store                            " OS X
 let g:user_zen_settings = {
   \'indentation' : '  ',
   \}
+" }}}
+
+" Rails.vim------------------------------------------------------------- {{{
+" }}}
+
+" Snipmate-------------------------------------------------------------- {{{
+let g:snippets_dir = '~/.vim/snippets/'
 " }}}
 
 autocmd FileType javascript :compiler gjslint
