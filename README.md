@@ -31,10 +31,8 @@ $ git clone https://github.com/gmarik/vundle.git ~/vim/.vim/bundle/vundle
 ```
 $ cd .vim/bundle/Command-T/ruby/command-t
 $ ruby extconf.rb
-
 $ rvm use system
 $ rbenv local system
-
 $ make
 $ sudo make install
 ```
