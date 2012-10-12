@@ -32,10 +32,7 @@ $ git clone https://github.com/gmarik/vundle.git ~/vim/.vim/bundle/vundle
 $ cd .vim/bundle/Command-T/ruby/command-t
 $ ruby extconf.rb
 
-# if you use rvm
 $ rvm use system
-
-# if you use rbenv
 $ rbenv local system
 
 $ make
