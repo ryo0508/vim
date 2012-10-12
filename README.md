@@ -1,3 +1,4 @@
+#dotvim
 ##REQUIREMENT:
 * Vim compiled with Ruby support(7.0+)
   - check by running'vim --version | grep ruby' and if you see "+ruby" then you are good to go :)
@@ -5,7 +6,7 @@
 * ruby which should be linked to vim
 
 
-##HOW TO:
+##USAGE:
 1. git clone to your root directory:  
 ```
 $ git clone git@github.com:ryo0508/vim.git
@@ -30,7 +31,13 @@ $ git clone https://github.com/gmarik/vundle.git ~/vim/.vim/bundle/vundle
 ```
 $ cd .vim/bundle/Command-T/ruby/command-t
 $ ruby extconf.rb
-$ rvm use system OR rbenv local system
+
+# if you use rvm
+$ rvm use system
+
+# if you use rbenv
+$ rbenv local system
+
 $ make
 $ sudo make install
 ```
