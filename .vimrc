@@ -25,6 +25,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'dbext.vim'
 Bundle 'tComment'
 Bundle 'tpope/vim-rails.git'
+Bundle 'Solarized'
 com! EditBundles :e $bundles_file
 augroup Vundle
   au BufWritePost $bundles_file call vundle#config#init()
@@ -95,6 +96,14 @@ set listchars=tab:>-
 " {{{ Color Settings
 syntax on
 set t_Co=256
+
+
+" MacVimで動かしたときはSolarizedのdarkを適用
+if has("gui_macvim")
+  set background=dark
+  colorscheme solarized
+endif
+
 " }}}
 
 " Bell Settings--------------------------------------------------------- {{{
