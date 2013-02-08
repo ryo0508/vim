@@ -2,3 +2,5 @@
 !.vim/compiler/.gitignore
 .vim/bundle/*
 .vim/compiler/*
+
+tmux*.log
