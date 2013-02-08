@@ -37,6 +37,11 @@ augroup END
 filetype plugin indent on
 " }}}
 
+
+" Basic Settings----------------------------------------------------- {{{
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+" }}}
+
 " Display Settings----------------------------------------------------- {{{
 set autoread
 :set number
