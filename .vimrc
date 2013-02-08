@@ -18,14 +18,14 @@ Bundle 'Tabular'
 Bundle 'YankRing.vim'
 Bundle 'EasyMotion'
 Bundle 'The-NERD-tree'
-Bundle 'Zenburn'
 Bundle 'vim-coffee-script'
 Bundle 'tomasr/molokai'
 Bundle 'pangloss/vim-javascript'
-Bundle 'dbext.vim'
 Bundle 'tComment'
 Bundle 'tpope/vim-rails.git'
 Bundle 'Solarized'
+Bundle 'fugitive.vim'
+Bundle 'https://github.com/goldfeld/vim-seek.git'
 com! EditBundles :e $bundles_file
 augroup Vundle
   au BufWritePost $bundles_file call vundle#config#init()
@@ -97,13 +97,11 @@ set listchars=tab:>-
 syntax on
 set t_Co=256
 
-
 " MacVimで動かしたときはSolarizedのdarkを適用
 if has("gui_macvim")
   set background=dark
   colorscheme solarized
 endif
-
 " }}}
 
 " Bell Settings--------------------------------------------------------- {{{
@@ -117,7 +115,6 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast editing of the .vimrc
-nmap <leader>e :e! ~/.vimrc<cr>
 autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Spliting the Screen
@@ -205,5 +202,8 @@ let g:user_zen_settings = {
 let g:snippets_dir = '~/.vim/snippets/'
 " }}}
 
-autocmd FileType javascript :compiler gjslint
+" EasyMotion-------------------------------------------------------------- {{{
+"  let g:EasyMotion_leader_key = '<Leader>'
+" }}}
+
 autocmd QuickfixCmdPost make copen
