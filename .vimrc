@@ -205,4 +205,9 @@ let g:user_zen_settings = {
 let g:snippets_dir = '~/.vim/snippets/'
 " }}}
 
+" YankRing ------------------------------------------------------------- {{{
+let g:yankring_paste_v_akey = ''
+let g:yankring_paste_v_bkey = ''
+" }}}
+
 autocmd QuickfixCmdPost make copen
