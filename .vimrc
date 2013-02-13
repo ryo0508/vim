@@ -25,7 +25,7 @@ Bundle 'tComment'
 Bundle 'tpope/vim-rails.git'
 Bundle 'Solarized'
 Bundle 'fugitive.vim'
-Bundle 'https://github.com/goldfeld/vim-seek.git'
+" Bundle 'https://github.com/goldfeld/vim-seek.git'
 com! EditBundles :e $bundles_file
 augroup Vundle
   au BufWritePost $bundles_file call vundle#config#init()
@@ -33,10 +33,7 @@ augroup Vundle
   au BufWritePost $bundles_file BundleClean
   au BufWritePost $bundles_file BundleInstall
 augroup END
-
-filetype plugin indent on
 " }}}
-
 
 " Basic Settings----------------------------------------------------- {{{
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
@@ -46,6 +43,7 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><C
 set autoread
 :set number
 " :Set relativenumber
+filetype plugin indent on
 :set hidden
 :set autowrite
 :set hlsearch
@@ -159,7 +157,7 @@ let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 " }}}
 
 " Command-T------------------------------------------------------------- {{{
-let g:CommandTMaxHeight=40
+let g:CommandTMaxHeight=20
 let g:CommandTMatchWindowAtTop=1
 nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>b :CommandTBuffer<CR>
@@ -184,14 +182,14 @@ let g:NERDTreeWinSize = 40
 " }}}
 
 " WildMenu-------------------------------------------------------------- {{{
-set wildignore+=.hg,.git,.svn                         " VCS
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg        " Images
+set wildignore+=.hg,.git,.svn                                       " VCS
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg                      " Images
 set wildignore+=vendor/*,log/*,tmp/*,*app/admin/*,*app/view/admin/* " Rails
-set wildignore+=*.jar,*.class                         " Java
-set wildignore+=rebar,tags,*.beam,deps/*,rel/*,*/ebin/* " Erlang
-set wildignore+=*.lzo,*.zip,*.gz,*.tgz,*.tar          " Compressed files
-set wildignore+=*.log,BLANK,*.log.[0-9]*,*.lock,*.pid " log, lock, pid files"
-set wildignore+=*.DS_Store                            " OS X
+set wildignore+=*.jar,*.class                                       " Java
+set wildignore+=rebar,tags,*.beam,deps/*,rel/*,*/ebin/*             " Erlang
+set wildignore+=*.lzo,*.zip,*.gz,*.tgz,*.tar                        " Compressed files
+set wildignore+=*.log,BLANK,*.log.[0-9]*,*.lock,*.pid               " log, lock, pid files "
+set wildignore+=*.DS_Store                                          " OS X
 " }}}
 
 " ZenCoding------------------------------------------------------------- {{{
@@ -205,10 +203,6 @@ let g:user_zen_settings = {
 
 " Snipmate-------------------------------------------------------------- {{{
 let g:snippets_dir = '~/.vim/snippets/'
-" }}}
-
-" EasyMotion-------------------------------------------------------------- {{{
-"  let g:EasyMotion_leader_key = '<Leader>'
 " }}}
 
 autocmd QuickfixCmdPost make copen
