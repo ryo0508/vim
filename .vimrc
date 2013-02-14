@@ -151,6 +151,25 @@ set foldlevelstart=0
 set nobackup
 set noswapfile
 " }}}
+
+" Line Numbering-------------------------------------------------------- {{{
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+noremap <C-n><C-n> :call NumberToggle()<cr>
+
+:au FocusLost * :setnumber
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+" }}}
  
 " ctag setting---------------------------------------------------------- {{{
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
@@ -208,6 +227,9 @@ let g:snippets_dir = '~/.vim/snippets/'
 " YankRing ------------------------------------------------------------- {{{
 let g:yankring_paste_v_akey = ''
 let g:yankring_paste_v_bkey = ''
+" }}}
+
+" Surround.vim --------------------------------------------------------- {{{
 " }}}
 
 autocmd QuickfixCmdPost make copen
