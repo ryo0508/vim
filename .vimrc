@@ -153,6 +153,7 @@ set noswapfile
 " }}}
 
 " Line Numbering-------------------------------------------------------- {{{
+set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
@@ -163,7 +164,7 @@ endfunc
 
 noremap <C-n><C-n> :call NumberToggle()<cr>
 
-:au FocusLost * :setnumber
+:au FocusLost * :set number
 :au FocusGained * :set relativenumber
 
 autocmd InsertEnter * :set number
@@ -234,7 +235,7 @@ let g:user_zen_settings = {
 " Rails.vim------------------------------------------------------------- {{{
 " }}}
 
-" Snipmate-------------------------------------------------------------- {{{
+" snipmate-------------------------------------------------------------- {{{
 let g:snippets_dir = '~/.vim/snippets/'
 " }}}
 
