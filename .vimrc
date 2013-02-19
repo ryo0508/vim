@@ -170,6 +170,20 @@ autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
 " }}}
+
+" Paste / Nopaste ------------------------------------------------------ {{{
+" function! PasteToggle()
+"   if(&nopaste == 1)
+"     set paste 
+"     call s:warningMsg('Setting to Paste Mode')
+"   else
+"     set nopaste 
+"     call s:warningMsg('Setting to NO-Paste Mode')
+"   endif
+" endfunc
+" 
+" noremap <C-p><C-p> :call PasteToggle()<cr>
+" }}}
  
 " ctag setting---------------------------------------------------------- {{{
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
@@ -233,3 +247,12 @@ let g:yankring_paste_v_bkey = ''
 " }}}
 
 autocmd QuickfixCmdPost make copen
+
+
+" Utility Function ----------------------------------------------------- {{{
+function! s:warningMsg(msg)
+    echohl WarningMsg
+    echomsg a:msg
+    echohl None
+endfunction
+" }}}
