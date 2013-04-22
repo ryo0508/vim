@@ -97,8 +97,8 @@ set listchars=tab:>-
 " }}}
 
 " {{{ Color Settings
-syntax on
 set t_Co=256
+syntax on
 
 " MacVimで動かしたときはSolarizedのdarkを適用
 if has("gui_macvim")
@@ -130,6 +130,19 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " Delete Key Problem
 set backspace=2 " make backspace work like most other apps
 
+" disable allow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" disable K
+nnoremap K <nop>
+
 " }}}
 
 " Indent Setting------------------------------------------------------- {{{
@@ -153,7 +166,7 @@ set noswapfile
 " }}}
 
 " Line Numbering-------------------------------------------------------- {{{
-set relativenumber
+:set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set number
@@ -247,9 +260,6 @@ let g:yankring_paste_v_bkey = ''
 " Surround.vim --------------------------------------------------------- {{{
 " }}}
 
-autocmd QuickfixCmdPost make copen
-
-
 " Utility Function ----------------------------------------------------- {{{
 function! s:warningMsg(msg)
     echohl WarningMsg
@@ -257,3 +267,28 @@ function! s:warningMsg(msg)
     echohl None
 endfunction
 " }}}
+
+" Search Dash for word under cursor {{{
+function! SearchDash()
+  let s:browser = "/usr/bin/open"
+  let s:wordUnderCursor = expand("<cword>")
+  let s:url = "dash://".s:wordUnderCursor
+  let s:cmd ="silent ! " . s:browser . " " . s:url
+  execute s:cmd
+  redraw!
+endfunction
+map <leader>d :call SearchDash()<CR> 
+" }}}
+
+" vimgrep     ------------------------------------------------------ {{{
+autocmd QuickFixCmdPost *grep* cwindow
+
+nnoremap [q :cprevious<CR>   " To Previous 
+nnoremap ]q :cnext<CR>       " To Next 
+nnoremap [Q :<C-u>cfirst<CR> " To First
+nnoremap ]Q :<C-u>clast<CR>  " To Last 
+
+" }}}
+
+" なにこれ？
+autocmd QuickfixCmdPost make copen
