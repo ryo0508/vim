@@ -1,41 +1,78 @@
-" Vundle Setting------------------------------------------------------- {{{
+" NeoVundle Setting------------------------------------------------------- {{{
 set nocompatible
-filetype plugin indent on
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-Bundle 'gmarik/vundle'
-Bundle 'ZenCoding.vim'
-Bundle 'surround.vim'
-Bundle 'snipMate'
-Bundle 'L9'
-Bundle 'Command-T'
-Bundle 'taglist.vim'
-Bundle 'https://github.com/majutsushi/tagbar.git'
-Bundle 'Tabular'
-Bundle 'YankRing.vim'
-Bundle 'EasyMotion'
-Bundle 'The-NERD-tree'
-Bundle 'vim-coffee-script'
-Bundle 'tomasr/molokai'
-Bundle 'pangloss/vim-javascript'
-Bundle 'tComment'
-Bundle 'tpope/vim-rails.git'
-Bundle 'Solarized'
-Bundle 'fugitive.vim'
-" Bundle 'https://github.com/goldfeld/vim-seek.git'
-com! EditBundles :e $bundles_file
-augroup Vundle
-  au BufWritePost $bundles_file call vundle#config#init()
-  au BufWritePost $bundles_file source $bundles_file
-  au BufWritePost $bundles_file BundleClean
-  au BufWritePost $bundles_file BundleInstall
-augroup END
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+    \ }
+
+" My Bundles here:
+"
+" Note: You don't set neobundle setting in .gvimrc!
+" Original repos on github
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'majutsushi/tagbar.git'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'tomasr/molokai'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails.git'
+
+NeoBundle 'taichouchou2/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+
+
+" vim-scripts repos
+NeoBundle 'Command-T'
+NeoBundle 'EasyMotion'
+NeoBundle 'fugitive.vim'
+NeoBundle 'L9'
+NeoBundle 'snipMate'
+NeoBundle 'Solarized'
+NeoBundle 'surround.vim'
+NeoBundle 'Tabular'
+NeoBundle 'taglist.vim'
+NeoBundle 'tComment'
+NeoBundle 'The-NERD-tree'
+NeoBundle 'vim-coffee-script'
+NeoBundle 'YankRing.vim'
+NeoBundle 'ZenCoding.vim'
+" Non github repos
+
+" Non git repos
+
+"...
+filetype plugin indent on
+
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Installation check.
+NeoBundleCheck
+
+
 " }}}
 
 " Basic Settings----------------------------------------------------- {{{
+set guifont=Ricty\ for\ Powerline
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " }}}
 
@@ -52,31 +89,32 @@ filetype plugin indent on
 
 " Status line ------------------------------------------------------------- {{{
 set laststatus=2
-"set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
-set statusline=%f    " Path.
-set statusline+=%m   " Modified flag.
-set statusline+=%r   " Readonly flag.
-set statusline+=%w   " Preview window flag.
+let g:Powerline_symbols = 'compatible'
+" set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
+" set statusline=%f    " Path.
+" set statusline+=%m   " Modified flag.
+" set statusline+=%r   " Readonly flag.
+" set statusline+=%w   " Preview window flag.
 
-set statusline+=\    " Space.
+" set statusline+=\    " Space.
 
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
+" set statusline+=%*
 
-set statusline+=%=   " Right align.
+" set statusline+=%=   " Right align.
 
-" File format, encoding and type.  Ex: "(unix/utf-8/python)"
-set statusline+=(
-set statusline+=%{&ff}                        " Format (unix/DOS).
-set statusline+=/
-set statusline+=%{strlen(&fenc)?&fenc:&enc}   " Encoding (utf-8).
-set statusline+=/
-set statusline+=%{&ft}                        " Type (python).
-set statusline+=)
+" " File format, encoding and type.  Ex:          " (unix/utf-8/python)"
+" set statusline+=(
+" set statusline+=%{&ff}                        " Format (unix/DOS).
+" set statusline+=/
+" set statusline+=%{strlen(&fenc)?&fenc:&enc}   " Encoding (utf-8).
+" set statusline+=/
+" set statusline+=%{&ft}                        " Type (python).
+" set statusline+=)
 
-" Line and column position and counts.
-set statusline+=\ (line\ %l\/%L,\ col\ %03c)
+" " Line and column position and counts.
+" set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
 " File format, encoding and type.  Ex: "
 " set statusline+=(
@@ -86,14 +124,14 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " set statusline+=/
 " set statusline+=%{&ft)
 " set statusline+=)
-"
+
 " " Line and column position and counts.
 " set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
-set hidden
-set modelines=0
-set list
-set listchars=tab:>-
+" set hidden
+" set modelines=0
+" set list
+" set listchars=tab:>-
 " }}}
 
 " {{{ Color Settings

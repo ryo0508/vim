@@ -22,9 +22,18 @@ $ ln -s ~/vim/.vim vim/.vim && ln -s ~/vim/.vimrc ~/.vimrc && ln -s ~/vim/vimfil
 $ git clone https://github.com/gmarik/vundle.git ~/vim/.vim/bundle/vundle
 ```
 
+3` set up neobundle
+```
+$ git clone https://github.com/Shougo/neobundle.vim.git
+```
+
 4. open vim and run command below:  
 ```
 :BundleInstall
+
+or
+
+:NeoBundleInstall
 ```
 
 5. Install Command-t  
