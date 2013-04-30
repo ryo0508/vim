@@ -5,6 +5,10 @@
 * git 
 * ruby which should be linked to vim
 
+##Caution:
+When you switch to Neobundle from Vundle, you need to re-link command-t by reinstalling command-t.
+Please follow from the step 3 below.
+
 
 ##USAGE:
 1. git clone to your root directory:  

@@ -33,6 +33,7 @@ NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails.git'
+" NeoBundle 'git://git.wincent.com/command-t.git'
 
 NeoBundle 'taichouchou2/alpaca_powertabline'
 NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
@@ -89,7 +90,7 @@ filetype plugin indent on
 
 " Status line ------------------------------------------------------------- {{{
 set laststatus=2
-let g:Powerline_symbols = 'compatible'
+let g:Powerline_symbols = 'fancy'
 " set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
 " set statusline=%f    " Path.
 " set statusline+=%m   " Modified flag.
