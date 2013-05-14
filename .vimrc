@@ -1,45 +1,87 @@
-" Vundle Setting------------------------------------------------------- {{{
+" NeoVundle Setting------------------------------------------------------- {{{
 set nocompatible
-filetype plugin indent on
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-Bundle 'gmarik/vundle'
-Bundle 'ZenCoding.vim'
-Bundle 'surround.vim'
-Bundle 'snipMate'
-Bundle 'L9'
-Bundle 'Command-T'
-Bundle 'taglist.vim'
-Bundle 'https://github.com/majutsushi/tagbar.git'
-Bundle 'Tabular'
-Bundle 'YankRing.vim'
-Bundle 'EasyMotion'
-Bundle 'The-NERD-tree'
-Bundle 'Zenburn'
-Bundle 'vim-coffee-script'
-Bundle 'tomasr/molokai'
-Bundle 'pangloss/vim-javascript'
-Bundle 'dbext.vim'
-Bundle 'tComment'
-Bundle 'tpope/vim-rails.git'
-com! EditBundles :e $bundles_file
-augroup Vundle
-  au BufWritePost $bundles_file call vundle#config#init()
-  au BufWritePost $bundles_file source $bundles_file
-  au BufWritePost $bundles_file BundleClean
-  au BufWritePost $bundles_file BundleInstall
-augroup END
+call neobundle#rc(expand('~/.vim/bundle/'))
 
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+    \ }
+
+" My Bundles here:
+"
+" Note: You don't set neobundle setting in .gvimrc!
+" Original repos on github
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'majutsushi/tagbar.git'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'tomasr/molokai'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-rails.git'
+" NeoBundle 'git://git.wincent.com/command-t.git'
+
+NeoBundle 'taichouchou2/alpaca_powertabline'
+NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+
+
+" vim-scripts repos
+NeoBundle 'Command-T'
+NeoBundle 'EasyMotion'
+NeoBundle 'fugitive.vim'
+NeoBundle 'L9'
+NeoBundle 'snipMate'
+NeoBundle 'Solarized'
+NeoBundle 'surround.vim'
+NeoBundle 'Tabular'
+NeoBundle 'taglist.vim'
+NeoBundle 'tComment'
+NeoBundle 'The-NERD-tree'
+NeoBundle 'vim-coffee-script'
+NeoBundle 'YankRing.vim'
+NeoBundle 'ZenCoding.vim'
+" Non github repos
+
+" Non git repos
+
+"...
 filetype plugin indent on
+
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+" Installation check.
+NeoBundleCheck
+
+
+" }}}
+
+" Basic Settings----------------------------------------------------- {{{
+set guifont=Ricty\ for\ Powerline
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
 " }}}
 
 " Display Settings----------------------------------------------------- {{{
 set autoread
 :set number
 " :Set relativenumber
+filetype plugin indent on
 :set hidden
 :set autowrite
 :set hlsearch
@@ -48,31 +90,32 @@ set autoread
 
 " Status line ------------------------------------------------------------- {{{
 set laststatus=2
-"set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
-set statusline=%f    " Path.
-set statusline+=%m   " Modified flag.
-set statusline+=%r   " Readonly flag.
-set statusline+=%w   " Preview window flag.
+let g:Powerline_symbols = 'fancy'
+" set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
+" set statusline=%f    " Path.
+" set statusline+=%m   " Modified flag.
+" set statusline+=%r   " Readonly flag.
+" set statusline+=%w   " Preview window flag.
 
-set statusline+=\    " Space.
+" set statusline+=\    " Space.
 
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()} " Syntastic errors.
+" set statusline+=%*
 
-set statusline+=%=   " Right align.
+" set statusline+=%=   " Right align.
 
-" File format, encoding and type.  Ex: "(unix/utf-8/python)"
-set statusline+=(
-set statusline+=%{&ff}                        " Format (unix/DOS).
-set statusline+=/
-set statusline+=%{strlen(&fenc)?&fenc:&enc}   " Encoding (utf-8).
-set statusline+=/
-set statusline+=%{&ft}                        " Type (python).
-set statusline+=)
+" " File format, encoding and type.  Ex:          " (unix/utf-8/python)"
+" set statusline+=(
+" set statusline+=%{&ff}                        " Format (unix/DOS).
+" set statusline+=/
+" set statusline+=%{strlen(&fenc)?&fenc:&enc}   " Encoding (utf-8).
+" set statusline+=/
+" set statusline+=%{&ft}                        " Type (python).
+" set statusline+=)
 
-" Line and column position and counts.
-set statusline+=\ (line\ %l\/%L,\ col\ %03c)
+" " Line and column position and counts.
+" set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
 " File format, encoding and type.  Ex: "
 " set statusline+=(
@@ -82,19 +125,25 @@ set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 " set statusline+=/
 " set statusline+=%{&ft)
 " set statusline+=)
-"
+
 " " Line and column position and counts.
 " set statusline+=\ (line\ %l\/%L,\ col\ %03c)
 
-set hidden
-set modelines=0
-set list
-set listchars=tab:>-
+" set hidden
+" set modelines=0
+" set list
+" set listchars=tab:>-
 " }}}
 
 " {{{ Color Settings
-syntax on
 set t_Co=256
+syntax on
+
+" MacVimで動かしたときはSolarizedのdarkを適用
+if has("gui_macvim")
+  set background=dark
+  colorscheme solarized
+endif
 " }}}
 
 " Bell Settings--------------------------------------------------------- {{{
@@ -108,7 +157,6 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast editing of the .vimrc
-nmap <leader>e :e! ~/.vimrc<cr>
 autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Spliting the Screen
@@ -120,6 +168,19 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " Delete Key Problem
 set backspace=2 " make backspace work like most other apps
+
+" disable allow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" disable K
+nnoremap K <nop>
 
 " }}}
 
@@ -142,13 +203,47 @@ set foldlevelstart=0
 set nobackup
 set noswapfile
 " }}}
+
+" Line Numbering-------------------------------------------------------- {{{
+:set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+noremap <C-n><C-n> :call NumberToggle()<cr>
+
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+" }}}
+
+" Paste / Nopaste ------------------------------------------------------ {{{
+" function! PasteToggle()
+"   if(&nopaste == 1)
+"     set paste 
+"     call s:warningMsg('Setting to Paste Mode')
+"   else
+"     set nopaste 
+"     call s:warningMsg('Setting to NO-Paste Mode')
+"   endif
+" endfunc
+" 
+" noremap <C-p><C-p> :call PasteToggle()<cr>
+" }}}
  
 " ctag setting---------------------------------------------------------- {{{
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 " }}}
 
 " Command-T------------------------------------------------------------- {{{
-let g:CommandTMaxHeight=40
+let g:CommandTMaxHeight=20
 let g:CommandTMatchWindowAtTop=1
 nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>b :CommandTBuffer<CR>
@@ -173,14 +268,14 @@ let g:NERDTreeWinSize = 40
 " }}}
 
 " WildMenu-------------------------------------------------------------- {{{
-set wildignore+=.hg,.git,.svn                         " VCS
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg        " Images
+set wildignore+=.hg,.git,.svn                                       " VCS
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg                      " Images
 set wildignore+=vendor/*,log/*,tmp/*,*app/admin/*,*app/view/admin/* " Rails
-set wildignore+=*.jar,*.class                         " Java
-set wildignore+=rebar,tags,*.beam,deps/*,rel/*,*/ebin/* " Erlang
-set wildignore+=*.lzo,*.zip,*.gz,*.tgz,*.tar          " Compressed files
-set wildignore+=*.log,BLANK,*.log.[0-9]*,*.lock,*.pid " log, lock, pid files"
-set wildignore+=*.DS_Store                            " OS X
+set wildignore+=*.jar,*.class                                       " Java
+set wildignore+=rebar,tags,*.beam,deps/*,rel/*,*/ebin/*             " Erlang
+set wildignore+=*.lzo,*.zip,*.gz,*.tgz,*.tar                        " Compressed files
+set wildignore+=*.log,BLANK,*.log.[0-9]*,*.lock,*.pid               " log, lock, pid files "
+set wildignore+=*.DS_Store                                          " OS X
 " }}}
 
 " ZenCoding------------------------------------------------------------- {{{
@@ -192,9 +287,47 @@ let g:user_zen_settings = {
 " Rails.vim------------------------------------------------------------- {{{
 " }}}
 
-" Snipmate-------------------------------------------------------------- {{{
+" snipmate-------------------------------------------------------------- {{{
 let g:snippets_dir = '~/.vim/snippets/'
 " }}}
 
-autocmd FileType javascript :compiler gjslint
+" YankRing ------------------------------------------------------------- {{{
+let g:yankring_paste_v_akey = ''
+let g:yankring_paste_v_bkey = ''
+" }}}
+
+" Surround.vim --------------------------------------------------------- {{{
+" }}}
+
+" Utility Function ----------------------------------------------------- {{{
+function! s:warningMsg(msg)
+    echohl WarningMsg
+    echomsg a:msg
+    echohl None
+endfunction
+" }}}
+
+" Search Dash for word under cursor {{{
+function! SearchDash()
+  let s:browser = "/usr/bin/open"
+  let s:wordUnderCursor = expand("<cword>")
+  let s:url = "dash://".s:wordUnderCursor
+  let s:cmd ="silent ! " . s:browser . " " . s:url
+  execute s:cmd
+  redraw!
+endfunction
+map <leader>d :call SearchDash()<CR> 
+" }}}
+
+" vimgrep     ------------------------------------------------------ {{{
+autocmd QuickFixCmdPost *grep* cwindow
+
+nnoremap [q :cprevious<CR>   " To Previous 
+nnoremap ]q :cnext<CR>       " To Next 
+nnoremap [Q :<C-u>cfirst<CR> " To First
+nnoremap ]Q :<C-u>clast<CR>  " To Last 
+
+" }}}
+
+" なにこれ？
 autocmd QuickfixCmdPost make copen
