@@ -27,7 +27,7 @@ $ git clone https://github.com/gmarik/vundle.git ~/vim/.vim/bundle/vundle
 :BundleInstall
 ```
 
-5. Install Command-t  
+5. Install Command-t  (ref. http://git.wincent.com/command-t.git/blob/HEAD:/doc/command-t.txt)
 ```
 $ cd .vim/bundle/Command-T/ruby/command-t
 $ ruby extconf.rb
