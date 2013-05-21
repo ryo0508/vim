@@ -44,6 +44,7 @@ NeoBundle 'Command-T'
 NeoBundle 'EasyMotion'
 NeoBundle 'fugitive.vim'
 NeoBundle 'L9'
+NeoBundle 'quickrun.vim'
 NeoBundle 'snipMate'
 NeoBundle 'Solarized'
 NeoBundle 'surround.vim'
@@ -89,8 +90,9 @@ filetype plugin indent on
 " }}}
 
 " Status line ------------------------------------------------------------- {{{
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
+set laststatus=2  "Always display the statusline in all windows
+set noshowmode    "Hide the default mode text (e.g. -- INSERT -- below the statusline)"
+
 " set statusline=%<%f\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v\ %l/%L
 " set statusline=%f    " Path.
 " set statusline+=%m   " Modified flag.
@@ -156,7 +158,7 @@ set noerrorbells
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast editing of the .vimrc
+" Apply .vimrc immidiately after saving .vimrc
 autocmd! BufWritePost .vimrc source ~/.vimrc
 
 " Spliting the Screen
@@ -181,6 +183,15 @@ inoremap <right> <nop>
 
 " disable K
 nnoremap K <nop>
+
+" disable save a file named '
+autocmd! BufWritePre fuck 
+      \ try | echoerr 'Hey thats not nice to call a file ' . expand('<afile>') | endtry
+autocmd! BufWritePre ' 
+      \ try | echoerr 'This file should not be saved: ' . expand('<afile>') | endtry
+
+" escape key remapping
+inoremap jk <esc>
 
 " }}}
 
@@ -225,17 +236,8 @@ autocmd InsertLeave * :set relativenumber
 " }}}
 
 " Paste / Nopaste ------------------------------------------------------ {{{
-" function! PasteToggle()
-"   if(&nopaste == 1)
-"     set paste 
-"     call s:warningMsg('Setting to Paste Mode')
-"   else
-"     set nopaste 
-"     call s:warningMsg('Setting to NO-Paste Mode')
-"   endif
-" endfunc
-" 
-" noremap <C-p><C-p> :call PasteToggle()<cr>
+autocmd InsertLeave * set nopaste
+nmap <F11> :set paste<cr>
 " }}}
  
 " ctag setting---------------------------------------------------------- {{{
@@ -299,6 +301,11 @@ let g:yankring_paste_v_bkey = ''
 " Surround.vim --------------------------------------------------------- {{{
 " }}}
 
+" QuickRun --------------------------------------------------------- {{{
+let g:quickrun_config = {}
+let g:quickrun_config['*'] = {'runner': 'vimproc'}
+" }}}
+
 " Utility Function ----------------------------------------------------- {{{
 function! s:warningMsg(msg)
     echohl WarningMsg
@@ -331,3 +338,9 @@ nnoremap ]Q :<C-u>clast<CR>  " To Last
 
 " なにこれ？
 autocmd QuickfixCmdPost make copen
+
+" Abbreviations
+iabbrev parmas params
+
+" More File Types
+au BufNewFile,BufRead *.thor set filetype=ruby
