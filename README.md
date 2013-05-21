@@ -31,12 +31,12 @@ $ git clone https://github.com/Shougo/neobundle.vim.git
 :NeoBundleInstall
 ```
 
-5. Install Command-t  
+5. Install Command-t  (ref. http://git.wincent.com/command-t.git/blob/HEAD:/doc/command-t.txt)
 ```
 $ cd .vim/bundle/Command-T/ruby/command-t
-$ ruby extconf.rb
 $ rvm use system
 $ rbenv local system
+$ ruby extconf.rb
 $ make
 $ sudo make install
 ```
