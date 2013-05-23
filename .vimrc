@@ -14,13 +14,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Recommended to install
 " After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
 NeoBundle 'Shougo/vimproc', {
-    \ 'build' : {
+      \ 'build' : {
       \ 'windows' : 'make -f make_mingw32.mak',
       \ 'cygwin' : 'make -f make_cygwin.mak',
       \ 'mac' : 'make -f make_mac.mak',
       \ 'unix' : 'make -f make_unix.mak',
-    \ },
-    \ }
+      \ },
+      \ }
 
 " My Bundles here:
 "
@@ -76,6 +76,13 @@ NeoBundleCheck
 " Basic Settings----------------------------------------------------- {{{
 set guifont=Ricty\ for\ Powerline
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v,'\/'),"\n",'\\n','g')<CR><CR>
+
+" Delete Key Problem
+set backspace=2 " make backspace work like most other apps
+
+" Apply .vimrc immidiately after saving .vimrc
+autocmd! BufWritePost .vimrc source ~/.vimrc
+
 " }}}
 
 " Display Settings----------------------------------------------------- {{{
@@ -152,47 +159,30 @@ endif
 set visualbell
 set noerrorbells
 " }}}
-
+ 
 " Key Binding ------------------------------------------------------------- {{{
 
 let mapleader = ","
 let g:mapleader = ","
-
-" Apply .vimrc immidiately after saving .vimrc
-autocmd! BufWritePost .vimrc source ~/.vimrc
-
+ 
 " Spliting the Screen
 nmap <Space>- :split<cr><cr>
 nmap <Space>\| :vsplit<cr><cr>
-
-"deleting search highlight
+ 
+" deleting search highlight
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
-" Delete Key Problem
-set backspace=2 " make backspace work like most other apps
-
-" disable allow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-
+ 
 " disable K
 nnoremap K <nop>
+
+" escape key remapping
+inoremap jk <esc>
 
 " disable save a file named '
 autocmd! BufWritePre fuck 
       \ try | echoerr 'Hey thats not nice to call a file ' . expand('<afile>') | endtry
 autocmd! BufWritePre ' 
       \ try | echoerr 'This file should not be saved: ' . expand('<afile>') | endtry
-
-" escape key remapping
-inoremap jk <esc>
-
 " }}}
 
 " Indent Setting------------------------------------------------------- {{{
@@ -239,7 +229,7 @@ autocmd InsertLeave * :set relativenumber
 autocmd InsertLeave * set nopaste
 nmap <F11> :set paste<cr>
 " }}}
- 
+
 " ctag setting---------------------------------------------------------- {{{
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 " }}}
@@ -282,8 +272,8 @@ set wildignore+=*.DS_Store                                          " OS X
 
 " ZenCoding------------------------------------------------------------- {{{
 let g:user_zen_settings = {
-  \'indentation' : '  ',
-  \}
+      \'indentation' : '  ',
+      \}
 " }}}
 
 " Rails.vim------------------------------------------------------------- {{{
@@ -308,9 +298,9 @@ let g:quickrun_config['*'] = {'runner': 'vimproc'}
 
 " Utility Function ----------------------------------------------------- {{{
 function! s:warningMsg(msg)
-    echohl WarningMsg
-    echomsg a:msg
-    echohl None
+  echohl WarningMsg
+  echomsg a:msg
+  echohl None
 endfunction
 " }}}
 
